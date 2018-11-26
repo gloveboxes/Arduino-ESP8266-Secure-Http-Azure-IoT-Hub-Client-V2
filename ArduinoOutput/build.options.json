@@ -1,0 +1,11 @@
+{
+  "additionalFiles": "/Bme280.cpp,/Bme280.h,/Bmp180.cpp,/Bmp180.h,/Bmp280.cpp,/Bmp280.h,/Device.cpp,/Device.h,/DigitalPin.cpp,/DigitalPin.h,/EventHub.cpp,/EventHub.h,/IotHub.cpp,/IotHub.h,/Ldr.cpp,/Ldr.h,/Oled.cpp,/Oled.h,/SasToken.cpp,/SasToken.h,/Sensor.cpp,/Sensor.h,/Sht30.cpp,/Sht30.h,/drivers/Bmp180.cpp,/drivers/Bmp180.h,/drivers/Bmp280.cpp,/drivers/Bmp280.h,/drivers/DhtSensor.cpp,/drivers/DhtSensor.h,/drivers/OLED.cpp,/drivers/OLED.h,/sha256.cpp,/sha256.h",
+  "builtInLibrariesFolders": "/opt/arduino-1.8.7/libraries",
+  "customBuildProperties": "build.path=/home/dave/Github/Arduino-ESP8266-Secure-Http-Azure-IoT-Hub-Client-V2/ArduinoOutput,build.warn_data_percentage=75,runtime.tools.esptool.path=/home/dave/.arduino15/packages/esp8266/tools/esptool/0.4.9,runtime.tools.esptool-0.4.9.path=/home/dave/.arduino15/packages/esp8266/tools/esptool/0.4.9,runtime.tools.xtensa-lx106-elf-gcc.path=/home/dave/.arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9-2,runtime.tools.xtensa-lx106-elf-gcc-1.20.0-26-gb404fb9-2.path=/home/dave/.arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9-2,runtime.tools.mkspiffs.path=/home/dave/.arduino15/packages/esp8266/tools/mkspiffs/0.1.2,runtime.tools.mkspiffs-0.1.2.path=/home/dave/.arduino15/packages/esp8266/tools/mkspiffs/0.1.2",
+  "fqbn": "esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M3M",
+  "hardwareFolders": "/opt/arduino-1.8.7/hardware,/home/dave/.arduino15/packages,/home/dave/Arduino/hardware",
+  "otherLibrariesFolders": "/home/dave/Arduino/libraries",
+  "runtime.ide.version": "10807",
+  "sketchLocation": "/home/dave/Github/Arduino-ESP8266-Secure-Http-Azure-IoT-Hub-Client-V2/AzureClient/AzureClient.ino",
+  "toolsFolders": "/opt/arduino-1.8.7/tools-builder,/opt/arduino-1.8.7/hardware/tools/avr,/home/dave/.arduino15/packages"
+}
