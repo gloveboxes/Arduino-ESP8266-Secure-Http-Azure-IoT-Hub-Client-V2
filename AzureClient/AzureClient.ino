@@ -160,8 +160,6 @@ void setup()
   setSyncProvider(getCurrentTime); // This initiates an immediate call to getCurrentTime
   setSyncInterval(60 * 60 * 12);   // update time every twelve hours
 
-  Serial.println(now());
-
   delay(100);
   Serial.println("");
 }
@@ -176,11 +174,11 @@ void loop()
   device.connectWifi();
 
   led.on();
-  int resultCode = hub.publish(sensor.toJSON()); // resultCode 204 IoTHub Sucess, 201 EventHub Success
+  int resultCode = hub.publish(sensor.toJSON()); // resultCode 204 IoTHub Success, 201 EventHub Success
   led.off();
 
   Serial.print(sensor.deviceId);
-  Serial.println(" :" + String(resultCode));
+  Serial.println(": " + String(resultCode));
 
   delay(device.publishRateInSeconds * 1000); // limit publishing rate
 }
@@ -218,8 +216,8 @@ void lowPowerPublishESP8266()
 
   if (rtcDataFound)
   {
-    // if difference great than .3 degree
-    if (abs(rtcData.lastTemperature - currentTemperature) > 3)
+    // if difference great than .4 degree
+    if (abs(rtcData.lastTemperature - currentTemperature) > 4)
     {
       publish = true;
     }
@@ -241,7 +239,7 @@ void lowPowerPublishESP8266()
 
     int resultCode = hub.publish(sensor.toJSON()); // resultCode 204 IoTHub Success, 201 EventHub Success
 
-    // only update rtc data if sucessefully published data
+    // only update rtc data if successfully published data
     if (resultCode == 201 || resultCode == 204)
     {
 

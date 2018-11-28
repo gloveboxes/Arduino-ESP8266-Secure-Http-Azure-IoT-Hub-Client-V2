@@ -9,22 +9,24 @@
 #define DEEP_SLEEP_IN_SECONDS 0
 #define PUBLISH_RATE_IN_SECONDS 60
 
-#define IOTHUB_CONNECTION_STRING "[Your IoT Hub/Central Connection String eg HostName=saas-iothub-897898-f33a-4002-a44a-7ca5961b00b6.azure-devices.net;DeviceId=wemos-garage;SharedAccessKey=uRsr78d56s87878dd89d675g88H8+nRoiVgc3+epqlMHHg="
+#define IOTHUB_CONNECTION_STRING "[Your Azure IoT Hub or Azure IoT Central Connection String]"
 
+/* 
+ http://hassansin.github.io/certificate-pinning-in-nodejs for information on generating fingerprint. From Ubuntu or Ubuntu subsystem on Windows 10
+ 
+ echo -n | openssl s_client -connect [your azure iot hub].azure-devices.net:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > cert.pem
+ openssl x509 -noout -in cert.pem -fingerprint 
+*/
 
+#define IOTHUB_CERTIFICATE_FINGERPRINT "95:B4:61:DF:90:D9:D7:1D:15:22:D8:DB:2E:F1:7D:BC:F4:BB:41:D2"
+// #define IOTHUB_CERTIFICATE_FINGERPRINT ""
 
 #ifdef IOTHUB_CONNECTION_STRING
-
-//#define IOTHUB_CERTIFICATE_FINGERPRINT "9C:AC:A9:4C:32:F9:53:0A:85:CA:AA:4D:CE:A2:D9:A2:83:9A:B8:AB"
-#define IOTHUB_CERTIFICATE_FINGERPRINT ""
 
 #include "IotHub.h"
 IotHub hub(IOTHUB_CONNECTION_STRING, IOTHUB_CERTIFICATE_FINGERPRINT);
 
 #endif
-
-
-
 
 
 
@@ -46,14 +48,4 @@ EventHub hub(EVENTHUB_HOST, DEVICE, EVENTHUB_POLICY, EVENTHUB_KEY, EVENTHUB_HUBN
 
 #endif
 
-*/
-
-
-
-/* 
- http://hassansin.github.io/certificate-pinning-in-nodejs
- for information on generating fingerprint
- From Ubuntu subsystem on Windows 10
- echo -n | openssl s_client -connect IoTCampAU.azure-devices.net:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > cert.pem
- openssl x509 -noout -in cert.pem -fingerprint
 */
