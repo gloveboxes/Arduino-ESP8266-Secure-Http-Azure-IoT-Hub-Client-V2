@@ -14,8 +14,7 @@
 /* 
  http://hassansin.github.io/certificate-pinning-in-nodejs for information on generating fingerprint. From Ubuntu or Ubuntu subsystem on Windows 10
  
- echo -n | openssl s_client -connect [your azure iot hub].azure-devices.net:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > cert.pem
- openssl x509 -noout -in cert.pem -fingerprint 
+echo -n | openssl s_client -connect saas-iothub-8135cd3b-f33a-4002-a44a-7ca5961b00b6.azure-devices.net:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | openssl x509 -noout -fingerprint
 */
 
 #define IOTHUB_CERTIFICATE_FINGERPRINT "95:B4:61:DF:90:D9:D7:1D:15:22:D8:DB:2E:F1:7D:BC:F4:BB:41:D2"
