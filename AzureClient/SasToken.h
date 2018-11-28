@@ -18,6 +18,7 @@ public:
 
 protected:
   bool generateSasToken();
+  void tokeniseConnectionString(char *cs);
 
   struct security
   {
@@ -39,6 +40,7 @@ protected:
 private:
   char buff[BUFSIZE];
   virtual void createSasToken(char *key);
+  char *getValue(char *token, char *key);
 };
 
 #endif // _SASTOKEN

@@ -62,3 +62,56 @@ bool SasToken::generateSasToken()
   createSasToken(device.key);
   return true;
 }
+
+void SasToken::tokeniseConnectionString(char *connectionString)
+{
+  int len = strlen(connectionString);
+  if (len == 0)
+  {
+    return;
+  }
+
+  char *cs = (char *)malloc(len + 1);
+  strcpy(cs, connectionString);
+
+  char *value;
+  char *pch = strtok(cs, ";");
+
+  while (pch != NULL)
+  {
+    value = getValue(pch, "HostName");
+    if (NULL != value)
+    {
+      this->device.host = value;
+    }
+    value = getValue(pch, "DeviceId");
+    if (NULL != value)
+    {
+      this->device.id = value;
+    }
+    value = getValue(pch, "SharedAccessKey");
+    if (NULL != value)
+    {
+      this->device.key = value;
+    }
+    pch = strtok(NULL, ";");
+  }
+
+  free(cs);
+}
+
+char *SasToken::getValue(char *token, char *key)
+{
+  int valuelen;
+  int keyLen = strlen(key) + 1; // plus 1 for = char
+
+  if (NULL == strstr(token, key))
+  {
+    return NULL;
+  }
+
+  valuelen = strlen(token + keyLen);
+  char *arr = (char *)malloc(valuelen + 1);
+  strcpy(arr, token + keyLen);
+  return arr;
+}

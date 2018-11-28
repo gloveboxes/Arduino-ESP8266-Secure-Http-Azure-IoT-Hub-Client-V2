@@ -27,7 +27,7 @@ int IotHub::publishData(char *data, int dataLength)
 {
   int startChar = 0;
   int len = 0;
-  int bytesWritten;
+  int bytesWritten = 0;
 
   while (startChar < dataLength) // write out data in chunks
   {
@@ -38,15 +38,15 @@ int IotHub::publishData(char *data, int dataLength)
     bytesWritten += client->print(buff);
     startChar += len;
   }
+
   return bytesWritten;
 }
 
-int IotHub::publishBegin(int dataLength)
+bool IotHub::connect()
 {
-
   if (WiFi.status() != WL_CONNECTED)
   {
-    return -1;
+    return false;
   }
 
   if (!client->connected())
@@ -55,20 +55,25 @@ int IotHub::publishBegin(int dataLength)
     {
       Serial.print("Host connection failed.  WiFi IP Address: ");
       Serial.println(WiFi.localIP());
-      return -3; //"Not Connected";
+      return false; //"Not Connected";
     }
     else
     {
       if (!verifyServerFingerprint())
       {
-        return -4; // "Cert Fingerprint does not validate";
+        return false; // "Cert Fingerprint does not validate";
       }
     }
   }
 
-  if (!client->connected())
+  return client->connected();
+}
+
+bool IotHub::publishBegin(int dataLength)
+{
+  if (!connect())
   {
-    return -2;
+    return false;
   }
 
   generateSasToken();
@@ -78,39 +83,42 @@ int IotHub::publishBegin(int dataLength)
   yield();
   client->flush();
 
-  return client->print(buff); //write out http header
+  int result = client->print(buff); //write out http header
+
+  return postLen == result;
 }
 
 int IotHub::publishEnd()
 {
   String response = "";
-  String chunk = "";
-  int limit = 0;
+  int retry = 0;
   int result = -1;
 
   yield();
-  client->setTimeout(2000);
 
-  do
+  if (client->connected())
   {
-    if (limit == 1)
-    {
-      client->setTimeout(250); // once got first chunk of response reduce timeout
-    }
-    if (client->connected())
-    {
+    client->setTimeout(2000);
+    delay(40);
+
+    response = client->readStringUntil('\n'); // first line has the HTTP response code
+
+    client->setTimeout(1000);
+
+    while (client->connected() && retry++ < 20)
+    { // ignore rest of the header info
       delay(40);
-      chunk = client->readStringUntil('\n');
-      response += chunk;
+      String line = client->readStringUntil('\n');
+      if (line == "\r") // headers received
+      {
+        break;
+      }
     }
-  } while (chunk.length() > 0 && ++limit < 100);
+  }
 
-  if (response.length() > 12)
+  if (response.startsWith("HTTP"))
   {
-    if (response.startsWith("HTTP"))
-    {
-      result = response.substring(9, 12).toInt();
-    }
+    result = response.substring(9, 12).toInt();
   }
 
   if (result == -1)
@@ -125,60 +133,16 @@ int IotHub::publishEnd()
 int IotHub::publish(char *data)
 {
   int dataLength = strlen(data);
-  publishBegin(dataLength);
-  publishData(data, dataLength);
+  if (!publishBegin(dataLength))
+  {
+    client->flush();
+    return 400;
+  }
+  int bytesSent = publishData(data, dataLength);
+  if (bytesSent != dataLength)
+  {
+    client->flush();
+    return 400;
+  }
   return publishEnd();
-}
-
-void IotHub::tokeniseConnectionString(char *connectionString)
-{
-  int len = strlen(connectionString);
-  if (len == 0)
-  {
-    return;
-  }
-
-  char *cs = (char *)malloc(len + 1);
-  strcpy(cs, connectionString);
-
-  char *value;
-  char *pch = strtok(cs, ";");
-
-  while (pch != NULL)
-  {
-    value = getValue(pch, "HostName");
-    if (NULL != value)
-    {
-      this->device.host = value;
-    }
-    value = getValue(pch, "DeviceId");
-    if (NULL != value)
-    {
-      this->device.id = value;
-    }
-    value = getValue(pch, "SharedAccessKey");
-    if (NULL != value)
-    {
-      this->device.key = value;
-    }
-    pch = strtok(NULL, ";");
-  }
-
-  free(cs);
-}
-
-char *IotHub::getValue(char *token, char *key)
-{
-  int valuelen;
-  int keyLen = strlen(key) + 1; // plus 1 for = char
-
-  if (NULL == strstr(token, key))
-  {
-    return NULL;
-  }
-
-  valuelen = strlen(token + keyLen);
-  char *arr = (char *)malloc(valuelen + 1);
-  strcpy(arr, token + keyLen);
-  return arr;
 }

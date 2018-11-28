@@ -13,12 +13,11 @@
 #include "SasToken.h"
 
 #define BUFSIZE 512
-#define SEGMENT_LENGTH 150
+#define SEGMENT_LENGTH 100
 
 class IotHub : public SasToken
 {
 public:
-  //  IotHub(char *host, char *deviceId, char *key, const char *certificateFingerprint, time_t sasExpiryPeriodInSeconds = 15 * 60)
   IotHub(char *connectionString, const char *certificateFingerprint, time_t sasExpiryPeriodInSeconds = 15 * 60)
   {
     this->certificateFingerprint = certificateFingerprint;
@@ -36,7 +35,7 @@ public:
     this->sas.expiryPeriodInSeconds = sasExpiryPeriodInSeconds;
   }
 
-  int publishBegin(int dataLength);
+  bool publishBegin(int dataLength);
   int publishData(char *data, int dataLength);
   int publishEnd();
   int publish(char *data);
@@ -48,8 +47,6 @@ public:
 protected:
   char buff[BUFSIZE];
   char endPoint[200];
-  //  time_t currentEpochTime();
-  //  char fullSas[200];
 
 private:
   //https://forum.arduino.cc/index.php?topic=129535.0
@@ -66,12 +63,8 @@ private:
   WiFiSSLClient *client = new WiFiSSLClient;
 #endif
 
-  void tokeniseConnectionString(char *cs);
-  char *getValue(char *token, char *key);
+  bool connect();
   const char *certificateFingerprint;
-  //  void generateSas();
-  //  virtual void initialiseHub();
-
   bool verifyServerFingerprint();
 
   const char *TARGET_URL = "/devices/";
