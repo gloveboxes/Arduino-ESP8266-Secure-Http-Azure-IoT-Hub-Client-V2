@@ -1,6 +1,6 @@
 # Securely stream data from ESP8266 MCUs to Azure IoT Hub or Azure IoT Central
 
-|Author|[Dave Glover](https://developer.microsoft.com/en-us/advocates/dave-glover), Microsoft Cloud Developer Advocate |
+|Author|[Dave Glover](https://developer.microsoft.com/en-us/advocates/dave-glover?WT.mc_id=article-github-dglover), Microsoft Cloud Developer Advocate |
 |----|---|
 |Solution|This solution securely streams sensor data directly to Azure IoT Hub over HTTPS calling Azure REST APIs from an ESP8266 MCU.|
 |Source Code| [ESP8266 Secure Azure IoT Hub Client V2](https://github.com/gloveboxes/Arduino-ESP8266-Secure-Http-Azure-IoT-Hub-Client-V2) |
@@ -125,7 +125,7 @@ See the [Visualizing IoT Data](http://thinglabs.io/workshop/cs/nightlight/visual
  
 ### Power BI
 
-[Microsoft Power BI](https://powerbi.microsoft.com) makes it easy to visualise, organize and better understand your data.
+[Microsoft Power BI](https://powerbi.microsoft.com?WT.mc_id=article-github-dglover) makes it easy to visualise, organize and better understand your data.
 
 Follow the notes in the See the [Visualizing IoT Data](http://thinglabs.io/workshop/cs/nightlight/visualize-iot-with-powerbi/) lab and modify the real time report as per this image.
 
