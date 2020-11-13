@@ -1,12 +1,12 @@
 # Securely stream data from ESP8266 MCUs to Azure IoT Hub or Azure IoT Central
 
-|Author|[Dave Glover](https://developer.microsoft.com/en-us/advocates/dave-glover?WT.mc_id=article-github-dglover), Microsoft Cloud Developer Advocate |
+|Author|[Dave Glover](https://developer.microsoft.com/advocates/dave-glover?WT.mc_id=iot-0000-dglover), Microsoft Cloud Developer Advocate |
 |----|---|
 |Solution|This solution securely streams sensor data directly to Azure IoT Hub over HTTPS calling Azure REST APIs from an ESP8266 MCU.|
 |Source Code| [ESP8266 Secure Azure IoT Hub Client V2](https://github.com/gloveboxes/Arduino-ESP8266-Secure-Http-Azure-IoT-Hub-Client-V2) |
 |Documentation|[README](https://gloveboxes.github.io/Arduino-ESP8266-Secure-Http-Azure-IoT-Hub-Client-V2)|
-|Platform|[ESP8266 (Firmware V2.3.0)](https://github.com/esp8266/Arduino), [Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/?WT.mc_id=article-github-dglover), [Azure IoT Hub](https://docs.microsoft.com/en-au/azure/iot-hub/?WT.mc_id=article-github-dglover), [Azure Stream Analytics](https://docs.microsoft.com/en-us/azure/stream-analytics/?WT.mc_id=article-github-dglover), [Power Bi](https://docs.microsoft.com/en-us/power-bi/?WT.mc_id=article-github-dglover)|
-|Video Training|[What is Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/overview-iot-central/?WT.mc_id=article-github-dglover), [Introduction to Azure IoT Hub](https://www.youtube.com/watch?v=smuZaZZXKsU)|
+|Platform|[ESP8266 (Firmware V2.3.0)](https://github.com/esp8266/Arduino), [Azure IoT Central](https://docs.microsoft.com/azure/iot-central/?WT.mc_id=iot-0000-dglover), [Azure IoT Hub](https://docs.microsoft.com/azure/iot-hub/?WT.mc_id=iot-0000-dglover), [Azure Stream Analytics](https://docs.microsoft.com/azure/stream-analytics/?WT.mc_id=iot-0000-dglover), [Power Bi](https://docs.microsoft.com/power-bi/?WT.mc_id=iot-0000-dglover)|
+|Video Training|[What is Azure IoT Central](https://docs.microsoft.com/azure/iot-central/overview-iot-central/?WT.mc_id=iot-0000-dglover), [Introduction to Azure IoT Hub](https://www.youtube.com/watch?v=smuZaZZXKsU)|
 |Screencasts|[How to create the Azure IoT Central Application](https://youtu.be/D26rJmHyZcA), [How to create an Azure IoT Hub](https://youtu.be/lHpUu6wSX40)|
 |Date|As at Nov 2018|
 |Acknowledgment|Thanks to [Štěpán Bechynský](https://microsoft.hackster.io/en-US/stepanb) "[Proof of Concept – NodeMCU, Arduino and Azure Event Hub] (https://microsoft.hackster.io/en-US/stepanb/proof-of-concept-nodemcu-arduino-and-azure-event-hub-a33043)" project |
@@ -42,11 +42,11 @@ The Server Certificate Fingerprint was generated as follows:-
 IoT Hub is designed to "Securely connect, monitor, and control millions of IoT assets" and is
 designed for internet scale data ingestion.
 
-[Stream Analytics](https://docs.microsoft.com/en-us/azure/stream-analytics/?WT.mc_id=article-github-dglover),
-[Power Bi](https://docs.microsoft.com/en-us/power-bi/?WT.mc_id=article-github-dglover) and preconfigured IoT Hub solutions such as
-[Remote monitoring](https://docs.microsoft.com/en-us/azure/iot-accelerators/iot-accelerators-remote-monitoring-sample-walkthrough/?WT.mc_id=article-github-dglover) provide ways to visualise and unlock the value of your data in Azure.
+[Stream Analytics](https://docs.microsoft.com/azure/stream-analytics/?WT.mc_id=iot-0000-dglover),
+[Power Bi](https://docs.microsoft.com/power-bi/?WT.mc_id=iot-0000-dglover) and preconfigured IoT Hub solutions such as
+[Remote monitoring](https://docs.microsoft.com/azure/iot-accelerators/iot-accelerators-remote-monitoring-sample-walkthrough/?WT.mc_id=iot-0000-dglover) provide ways to visualise and unlock the value of your data in Azure.
 
-For more background information read this "[Stream Analytics & Power BI: A real-time analytics dashboard for streaming data](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-power-bi-dashboard/?WT.mc_id=article-github-dglover)" article.
+For more background information read this "[Stream Analytics & Power BI: A real-time analytics dashboard for streaming data](https://docs.microsoft.com/azure/stream-analytics/stream-analytics-power-bi-dashboard/?WT.mc_id=iot-0000-dglover)" article.
 
 ## Setup and Deployment Summary
 
@@ -103,7 +103,7 @@ From Device Explorer, head to the Data tab, select your device, enable consumer 
 
 ### Azure Stream Analytics
 
-[Azure Stream Analytics](https://docs.microsoft.com/en-us/azure/stream-analytics/?WT.mc_id=article-github-dglover) enables you to gain real-time insights in to your device, sensor, infrastructure, and application data.
+[Azure Stream Analytics](https://docs.microsoft.com/azure/stream-analytics/?WT.mc_id=iot-0000-dglover) enables you to gain real-time insights in to your device, sensor, infrastructure, and application data.
 
 See the [Visualizing IoT Data](http://thinglabs.io/workshop/cs/nightlight/visualize-iot-with-powerbi/) lab.  Replace the query in that lab with the following and be sure to change the time zone to your local time zone offset.  Australia (AEDST) is currently +11 hours.
 
@@ -125,7 +125,7 @@ See the [Visualizing IoT Data](http://thinglabs.io/workshop/cs/nightlight/visual
  
 ### Power BI
 
-[Microsoft Power BI](https://powerbi.microsoft.com?WT.mc_id=article-github-dglover) makes it easy to visualise, organize and better understand your data.
+[Microsoft Power BI](https://powerbi.microsoft.com/?WT.mc_id=iot-0000-dglover) makes it easy to visualise, organize and better understand your data.
 
 Follow the notes in the See the [Visualizing IoT Data](http://thinglabs.io/workshop/cs/nightlight/visualize-iot-with-powerbi/) lab and modify the real time report as per this image.
 
